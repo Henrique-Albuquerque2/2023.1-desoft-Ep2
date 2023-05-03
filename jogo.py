@@ -1,11 +1,5 @@
-def define_posicoes(x, y, orietacao, tamanho):
-    posicao = []
-    for i in range(tamanho):
-        if orietacao == "vertical":
-            posicao.append([x+i,y])
-        else:
-            posicao.append([x,y+i])
-    return posicao
+# trabalho ep2 Henrique Albuquerque e Rafael Rayes
+print ('hello world')
 
 def afundados (frota, tabuleiro):
     afundados = 0
@@ -18,7 +12,7 @@ def afundados (frota, tabuleiro):
                     afundados += 1
     return afundados
 
-print(frota = {
+print(frota = { 
     "porta-aviões":[
       [[1,5],[1,6],[1,7],[1,8]]
     ],
@@ -37,8 +31,7 @@ print(frota = {
       [[8,9]],
       [[8,4]]
     ],
-},
-tabuleiro = [
+}, tabuleiro = [
   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
   [0, 1, 0, 0, 0, 'X', 'X', 'X', 'X', 0],
   [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
