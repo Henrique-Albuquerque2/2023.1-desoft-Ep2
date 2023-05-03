@@ -72,6 +72,7 @@ def posiciona_frota (dic_info):
 # Rafa
 
 # Exercicio 5: Quantas embarcações afundadas?
+# Henrique
 def afundados (frota, tabuleiro):
     afundados = 0
     for navio in frota:
@@ -83,3 +84,17 @@ def afundados (frota, tabuleiro):
                 if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'X':
                     afundados += 1
     return afundados
+
+# Exercicio 6: Posição Válida
+# Henrique
+def posicao_valida (dic_info, x, y, orientacao, tamanho):
+    pos_navio = define_posicoes(x,y,orientacao,tamanho)
+    for cordenada in pos_navio:
+        if cordenada[0] < 0 or cordenada[0] > 9 or cordenada[1] < 0 or cordenada[1] > 9:
+            return False
+        for navio in dic_info:
+            for unidade in dic_info[navio]:
+                for validacao in unidade:
+                    if cordenada == validacao:
+                        return False
+    return True
