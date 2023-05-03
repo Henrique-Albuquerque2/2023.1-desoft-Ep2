@@ -2,99 +2,61 @@
 # funções
 
 # Exercicio 1: Define posição
-# Henrique
-def define_posicoes (linha, coluna, orientacao, tamanho):
-    posicao = []
-    if orientacao == 'vertical':
-        for i in range (0, tamanho):
-            linha_da_casa = linha + i 
-            coluna_da_casa = coluna
-            casa = [linha_da_casa, coluna_da_casa]
-            posicao.append(casa)
-    if orientacao == 'horizontal':
-        for i in range (0, tamanho):
-            linha_da_casa = linha
-            coluna_da_casa = coluna + i
-            casa = [linha_da_casa, coluna_da_casa]
-            posicao.append(casa)
-    return posicao
-# Rafa
-def define_posicoes(x, y, orietacao, tamanho):
+def define_posicoes(linha, coluna, orietacao, tamanho):
     posicao = []
     for i in range(tamanho):
         if orietacao == "vertical":
-            posicao.append([x+i,y])
+            posicao.append([linha+i,coluna])
         else:
-            posicao.append([x,y+i])
+            posicao.append([linha,coluna+i])
     return posicao
 
 # Exercicio 2: Preenche Frota
-# Henrique
-def preenche_frota (frota, navio, x, y, orientacao, tamanho):
-    posicao = define_posicoes(x, y, orientacao, tamanho)
+def preenche_frota(frota, navio, linha, coluna, orientacao, tamanho):
+    posicao = define_posicoes(linha, coluna, orientacao, tamanho)
     if navio in frota:
         frota[navio].append(posicao)
     else:
         frota[navio] = [posicao]
     return frota
-# Rafa
 
 # Exercicio 3: Faz Jogada
-# Henrique
-def faz_jogada (tabuleiro, x, y):
-    if tabuleiro[x][y] == 1:
-        tabuleiro[x][y] = 'X'
+def faz_jogada(tabuleiro, linha, coluna):
+    if tabuleiro[linha][coluna] == 1:
+        tabuleiro[linha][coluna] = 'linha'
     else:
-        tabuleiro[x][y] = '-'
+        tabuleiro[linha][coluna] = '-'
     return tabuleiro
-# Rafa
-
 # Exercicio 4: Posiciona Frota
-# Henrique
-def posiciona_frota (dic_info):
-    tabuleiro = [
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    ]
-    for tipo in dic_info:
-        for frota in dic_info[tipo]:
-            for cordenada in frota:
-                tabuleiro[cordenada[0]][cordenada[1]] = 1
+def posiciona_frota(frota):
+    tabuleiro = [[0 for _ in range(10)] for _ in range(10)]
+    for posicoes in frota.values():
+        for posicao in posicoes:
+            for coordenada in posicao:
+                linha, coluna = coordenada
+                tabuleiro[linha][coluna] = 1
     return tabuleiro
-# Rafa
-
 # Exercicio 5: Quantas embarcações afundadas?
-# Henrique
-def afundados (frota, tabuleiro):
+def afundados(frota, tabuleiro):
     afundados = 0
     for navio in frota:
         for unidade in frota[navio]:
             validacao = []
             for posicao in unidade:
-                if tabuleiro[posicao[0]][posicao[1]] != 'X':
+                if tabuleiro[posicao[0]][posicao[1]] != 'linha':
                     break
-                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'X':
+                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'linha':
                     afundados += 1
     return afundados
 
 # Exercicio 6: Posição Válida
-# Henrique
-def posicao_valida (dic_info, x, y, orientacao, tamanho):
-    pos_navio = define_posicoes(x,y,orientacao,tamanho)
-    for cordenada in pos_navio:
-        if cordenada[0] < 0 or cordenada[0] > 9 or cordenada[1] < 0 or cordenada[1] > 9:
-            return False
-        for navio in dic_info:
-            for unidade in dic_info[navio]:
-                for validacao in unidade:
-                    if cordenada == validacao:
-                        return False
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    lista = define_posicoes(linha, coluna, orientacao, tamanho)
+    if lista[0][0] < 0 or lista[0][1] < 0 or lista[-1][0] > 9 or lista[-1][1] >9:
+        return False
+    for i in lista:
+        for navios in frota.values():
+            for navio in navios:
+                if i in navio:
+                    return False
     return True
