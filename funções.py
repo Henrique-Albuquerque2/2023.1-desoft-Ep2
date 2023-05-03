@@ -39,6 +39,38 @@ def preenche_frota (frota, navio, x, y, orientacao, tamanho):
     return frota
 # Rafa
 
+# Exercicio 3: Faz Jogada
+# Henrique
+def faz_jogada (tabuleiro, x, y):
+    if tabuleiro[x][y] == 1:
+        tabuleiro[x][y] = 'X'
+    else:
+        tabuleiro[x][y] = '-'
+    return tabuleiro
+# Rafa
+
+# Exercicio 4: Posiciona Frota
+# Henrique
+def posiciona_frota (dic_info):
+    tabuleiro = [
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    ]
+    for tipo in dic_info:
+        for frota in dic_info[tipo]:
+            for cordenada in frota:
+                tabuleiro[cordenada[0]][cordenada[1]] = 1
+    return tabuleiro
+# Rafa
+
 # Exercicio 5: Quantas embarcações afundadas?
 def afundados (frota, tabuleiro):
     afundados = 0
