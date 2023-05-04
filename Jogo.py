@@ -1,4 +1,5 @@
-
+import time
+import random
 def define_posicoes(linha, coluna, orietacao, tamanho):
     posicao = []
     for i in range(tamanho):
@@ -109,6 +110,7 @@ def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     return texto
 print(monta_tabuleiros(tabuleiroJogador, tabuleiroInimigo))
 jogadas = []
+jogadasInimigo = []
 while afundados(frota_oponente, tabuleiroInimigo) != 10:
     #ataque = input("Insira a coordenada de ataque: ").split('x')
     linha = int(input("Jogador, qual linha deseja atacar? "))
@@ -120,6 +122,16 @@ while afundados(frota_oponente, tabuleiroInimigo) != 10:
         print("A posição linha {} e coluna {} já foi informada anteriormente! ".format(linha, coluna))
         continue
     jogadas.append([linha, coluna])
+    afundou = afundados(frota_oponente, tabuleiroInimigo)
     tabuleiroInimigo = faz_jogada(tabuleiroInimigo, linha, coluna)
-    print(monta_tabuleiros(tabuleiroJogador, tabuleiroInimigo))
+    if not afundados(frota_oponente, tabuleiroInimigo) > afundou:
+        linhaOp = random.randint(0,9)
+        colunaOp = random.randint(0,9)
+        while [linhaOp, colunaOp] in jogadasInimigo:
+            linhaOp = random.randint(0,9)
+            colunaOp = random.randint(0,9)
+        jogadasInimigo.append([linhaOp, colunaOp])
+        print('Seu oponente está atacando na linha {} e coluna {}'.format(linhaOp, colunaOp))
+        tabuleiroJogador = faz_jogada(tabuleiroJogador, linhaOp, colunaOp)
+    print(monta_tabuleiros(tabuleiroJogador, tabuleiroInimigo))    
 print("Parabéns! Você derrubou todos os navios do seu oponente!")
