@@ -113,11 +113,7 @@ while afundados(frota_oponente, tabuleiroInimigo) != 10:
     #ataque = input("Insira a coordenada de ataque: ").split('x')
     linha = int(input("Jogador, qual linha deseja atacar? "))
     coluna = int(input("Jogador, qual coluna deseja atacar? "))
-    try:
-        if linha>9 or coluna>9 or linha<0 or coluna<0:
-            print("Coordenada inválida!")
-            continue
-    except:
+    if linha>9 or coluna>9 or linha<0 or coluna<0:
         print("Coordenada inválida!")
         continue
     if [linha, coluna] in jogadas:
