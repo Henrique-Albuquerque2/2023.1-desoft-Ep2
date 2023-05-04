@@ -23,10 +23,11 @@ def preenche_frota(frota, navio, linha, coluna, orientacao, tamanho):
 # Exercicio 3: Faz Jogada
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
-        tabuleiro[linha][coluna] = 'linha'
+        tabuleiro[linha][coluna] = 'X'
     else:
         tabuleiro[linha][coluna] = '-'
     return tabuleiro
+
 # Exercicio 4: Posiciona Frota
 def posiciona_frota(frota):
     tabuleiro = [[0 for _ in range(10)] for _ in range(10)]
@@ -36,6 +37,7 @@ def posiciona_frota(frota):
                 linha, coluna = coordenada
                 tabuleiro[linha][coluna] = 1
     return tabuleiro
+
 # Exercicio 5: Quantas embarcações afundadas?
 def afundados(frota, tabuleiro):
     afundados = 0
@@ -43,9 +45,9 @@ def afundados(frota, tabuleiro):
         for unidade in frota[navio]:
             validacao = []
             for posicao in unidade:
-                if tabuleiro[posicao[0]][posicao[1]] != 'linha':
+                if tabuleiro[posicao[0]][posicao[1]] != 'X':
                     break
-                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'linha':
+                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'X':
                     afundados += 1
     return afundados
 
@@ -60,4 +62,3 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
                 if i in navio:
                     return False
     return True
-print("9x0".split('x'))
