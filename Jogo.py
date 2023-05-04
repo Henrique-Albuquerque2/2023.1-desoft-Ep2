@@ -16,7 +16,7 @@ def preenche_frota(frota, navio, linha, coluna, orientacao, tamanho):
     return frota
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
-        tabuleiro[linha][coluna] = 'linha'
+        tabuleiro[linha][coluna] = 'X'
     else:
         tabuleiro[linha][coluna] = '-'
     return tabuleiro
@@ -34,9 +34,9 @@ def afundados(frota, tabuleiro):
         for unidade in frota[navio]:
             validacao = []
             for posicao in unidade:
-                if tabuleiro[posicao[0]][posicao[1]] != 'linha':
+                if tabuleiro[posicao[0]][posicao[1]] != 'X':
                     break
-                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'linha':
+                if posicao == unidade[-1] and tabuleiro[posicao[0]][posicao[1]] == 'X':
                     afundados += 1
     return afundados
 def posicao_valida(frota, linha, coluna, orientacao, tamanho):
@@ -67,7 +67,7 @@ for navio, specs in navios.items():
             orientacao = int(input("[1] Vertical [2] Horizontal >"))
             if orientacao-1:
                 orientacao = "horizontal"
-            else:
+            elif not orientacao-1:
                 orientacao = "vertical"
         if not posicao_valida(frota, linha, coluna, orientacao, specs[1]):
             print("Esta posição não está válida!")
