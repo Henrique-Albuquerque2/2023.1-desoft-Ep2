@@ -121,7 +121,7 @@ while afundados(frota_oponente, tabuleiroInimigo) != 10:
         print("Coordenada inválida!")
         continue
     if [linha, coluna] in jogadas:
-        print("A posição linha LINHA e coluna COLUNA já foi informada anteriormente! ")
+        print("A posição linha {} e coluna {} já foi informada anteriormente! ".format(linha, coluna))
         continue
     jogadas.append([linha, coluna])
     tabuleiroInimigo = faz_jogada(tabuleiroInimigo, linha, coluna)
