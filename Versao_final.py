@@ -158,7 +158,7 @@ while jogando:
         linha_oponente = random.randint(0,9)
         coluna_oponente = random.randint(0,9)
         if [linha_oponente, coluna_oponente] not in jogadas_oponentes:
-            jogadas_oponentes.append([linha, coluna])
+            jogadas_oponentes.append([linha_oponente, coluna_oponente])
             oponente_valido = False
     print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_oponente,coluna_oponente))
 
